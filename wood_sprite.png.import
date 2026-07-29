@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0flliy5lad50"
-path="res://.godot/imported/Reference_Gym_Bros.png-41e952174feb4de1548c734b72ba4bb9.ctex"
+uid="uid://espfm4daetor"
+path="res://.godot/imported/wood_sprite.png-b465f03637afe2d6d7b2ec0f1ec2b145.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Reference_Gym_Bros.png"
-dest_files=["res://.godot/imported/Reference_Gym_Bros.png-41e952174feb4de1548c734b72ba4bb9.ctex"]
+source_file="res://wood_sprite.png"
+dest_files=["res://.godot/imported/wood_sprite.png-b465f03637afe2d6d7b2ec0f1ec2b145.ctex"]
 
 [params]
 

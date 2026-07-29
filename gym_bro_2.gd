@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
-
-const SPEED = 800.0
-const JUMP_VELOCITY = -800.0
+const SPEED = 1400.0
+const JUMP_VELOCITY = -1300.0
 
 @onready var skeleton = $Bro 
 
@@ -12,12 +11,13 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("up2") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	if Input.is_action_just_released("up2") and velocity.y < 0:
+		velocity.y /= 2.5
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("left2", "right2")
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * SPEED, 100)
 		skeleton.scale.x = sign(direction)

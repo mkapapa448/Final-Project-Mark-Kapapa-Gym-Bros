@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y6umyljcbte0"
-path="res://.godot/imported/Gym_Bros_1.png-332fc7ebc38141170776f9ea0e99c724.ctex"
+uid="uid://cipptvncciqdi"
+path="res://.godot/imported/stone_sprite.png-90e6721bed86acd257fcb7fddc9714e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Gym_Bros_1.png"
-dest_files=["res://.godot/imported/Gym_Bros_1.png-332fc7ebc38141170776f9ea0e99c724.ctex"]
+source_file="res://stone_sprite.png"
+dest_files=["res://.godot/imported/stone_sprite.png-90e6721bed86acd257fcb7fddc9714e5.ctex"]
 
 [params]
 

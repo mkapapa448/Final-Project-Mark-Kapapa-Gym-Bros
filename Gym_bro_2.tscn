@@ -1,8 +1,7 @@
-[gd_scene format=3 uid="uid://chnbvty10s08a"]
+[gd_scene format=3 uid="uid://djeiwhvte155"]
 
-[ext_resource type="Script" uid="uid://jtvknyd0ryf2" path="res://gym_bro.gd" id="1_bvel2"]
-[ext_resource type="Texture2D" uid="uid://c0flliy5lad50" path="res://Reference_Gym_Bros.png" id="1_p1ap0"]
-[ext_resource type="Texture2D" uid="uid://bh4b1hnaf2okv" path="res://Gym_Bros_1.png" id="2_bvel2"]
+[ext_resource type="Script" uid="uid://b8tstnanhpiyw" path="res://gym_bro_2.gd" id="1_3wmie"]
+[ext_resource type="Texture2D" uid="uid://44ep3nakfsof" path="res://Gym_Bros_2.png" id="3_ln6f0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1ap0"]
 radius = 150.0
@@ -1883,7 +1882,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.06190476, 0.48993295), 2.11409
 point_count = 3
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t7waq"]
-xfade_time = 0.1
+xfade_time = 0.05
 xfade_curve = SubResource("Curve_67xg7")
 advance_expression = "is_moving"
 
@@ -1901,18 +1900,14 @@ states/run/position = Vector2(688.4, 99.68001)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7w27g"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_t7waq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_21ysm")]
 
 [node name="Gym Bro" type="CharacterBody2D" unique_id=1571358091]
-script = ExtResource("1_bvel2")
-
-[node name="ReferenceGymBros" type="Sprite2D" parent="." unique_id=898079030]
-visible = false
-position = Vector2(826, 438)
-texture = ExtResource("1_p1ap0")
+collision_layer = 2
+script = ExtResource("1_3wmie")
 
 [node name="Bro" type="Node2D" parent="." unique_id=83219867]
 
 [node name="Arm_L" type="Polygon2D" parent="Bro" unique_id=710453588]
 position = Vector2(-126, -291)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(226.22275, 447.52048, 168.44437, 479.80838, 97.071075, 479.80838, 37.593353, 282.68216, 27.397156, 196.01457, 66.482544, 58.873688, 144.65329, 36.78195, 212.62784, 89.462234, 217.72592, 210.1171, 170.14377, 272.99356, 230.4721, 393.23395, 108.96753, 216.79837, 120.18335, 299.0476, 95.89656, 284.887, 88.76167, 254.76189, 155.3905, 250.44945)
 uv = PackedVector2Array(394.88733, 453.40247, 341.51892, 471.66016, 272.70166, 460.42468, 233.37756, 283.46606, 216.52429, 199.89185, 255.84839, 63.661816, 349.94543, 38.382015, 407.52722, 95.963776, 420.1676, 202.76053, 375.22583, 272.98218, 414.54993, 396.57233, 313.43018, 214.64882, 317.64355, 300.31927, 292.36377, 277.84833, 295.1726, 252.56851, 347.1366, 241.33305)
@@ -1922,7 +1917,7 @@ internal_vertex_count = 5
 
 [node name="Head" type="Polygon2D" parent="Bro" unique_id=1130946919]
 position = Vector2(-562, -570)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(732.14655, 27.92214, 761.0852, 360.15433, 660.6554, 355.58936, 660.6554, 437.75916, 610.44055, 478.84406, 519.14075, 483.40906, 468.9259, 401.23923, 466.6433, 328.1994, 500.88074, 296.24448, 441.5359, 172.98978, 528.27075, 65.71252)
 uv = PackedVector2Array(732.14655, 27.92214, 761.0852, 360.15433, 660.6554, 355.58936, 660.6554, 437.75916, 610.44055, 478.84406, 519.14075, 483.40906, 468.9259, 401.23923, 466.6433, 328.1994, 500.88074, 296.24448, 441.5359, 172.98978, 528.27075, 65.71252)
@@ -1930,7 +1925,7 @@ bones = ["hip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/torso"
 
 [node name="Calf_L" type="Polygon2D" parent="Bro" unique_id=1578940497]
 position = Vector2(-320, -667)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(381.15527, 777.30035, 368.51526, 930.38354, 423.2882, 964.08997, 423.2882, 1017.45844, 327.78674, 1017.45844, 240.71191, 1018.86285, 239.3075, 947.23676, 243.52075, 899.486, 230.88086, 860.1619, 291.27148, 761.85156, 347.44885, 761.85156, 285.6538, 968.3032, 302.50696, 951.4501, 302.50696, 927.5747)
 uv = PackedVector2Array(381.15527, 777.30035, 368.51526, 930.38354, 423.2882, 964.08997, 423.2882, 1017.45844, 327.78674, 1017.45844, 240.71191, 1018.86285, 239.3075, 947.23676, 243.52075, 899.486, 230.88086, 860.1619, 291.27148, 761.85156, 347.44885, 761.85156, 285.6538, 968.3032, 302.50696, 951.4501, 302.50696, 927.5747)
@@ -1940,7 +1935,7 @@ internal_vertex_count = 3
 
 [node name="Thigh_L" type="Polygon2D" parent="Bro" unique_id=1797256351]
 position = Vector2(-318, -547)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(392.83533, 512.27795, 212.20361, 512.27795, 233.27734, 729.03595, 416.91956, 750.1096)
 uv = PackedVector2Array(392.83533, 512.27795, 212.20361, 512.27795, 233.27734, 729.03595, 416.91956, 750.1096)
@@ -1948,7 +1943,7 @@ bones = ["hip", PackedFloat32Array(0, 0, 0, 0), "hip/torso", PackedFloat32Array(
 
 [node name="Calf_R" type="Polygon2D" parent="Bro" unique_id=176616849]
 position = Vector2(-113, -660)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(163.9877, 771.28674, 161.1788, 931.3921, 217.89795, 952.2873, 217.89795, 1026.4414, 115.93616, 1017.1721, 26.333252, 1017.1721, 21.69873, 950.74243, 47.41977, 903.30347, 23.544373, 862.5749, 74.10397, 754.43353, 121.854706, 754.43353, 70.97763, 967.205, 88.41849, 957.69183, 93.17508, 930.7378)
 uv = PackedVector2Array(163.9877, 771.28674, 161.1788, 931.3921, 217.89795, 952.2873, 217.89795, 1026.4414, 115.93616, 1017.1721, 26.333252, 1017.1721, 21.69873, 950.74243, 47.41977, 903.30347, 23.544373, 862.5749, 74.10397, 754.43353, 121.854706, 754.43353, 70.97763, 967.205, 88.41849, 957.69183, 93.17508, 930.7378)
@@ -1958,7 +1953,7 @@ internal_vertex_count = 3
 
 [node name="Thigh_R" type="Polygon2D" parent="Bro" unique_id=1693124357]
 position = Vector2(-125, -547)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(213.92584, 511.97925, 12.62085, 509.7174, 32.97754, 731.3791, 225.2351, 744.9502)
 uv = PackedVector2Array(213.92584, 511.97925, 12.62085, 509.7174, 32.97754, 731.3791, 225.2351, 744.9502)
@@ -1966,7 +1961,7 @@ bones = ["hip", PackedFloat32Array(0, 0, 0, 0), "hip/torso", PackedFloat32Array(
 
 [node name="Torso" type="Polygon2D" parent="Bro" unique_id=1073579752]
 position = Vector2(-590, -772)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(628.5581, 514.8037, 713.0105, 569.5836, 719.8579, 697.4033, 687.90295, 747.6182, 678.7731, 825.223, 592.0382, 870.8729, 498.45593, 804.6806, 493.89087, 706.5333, 493.89087, 649.47095, 475.63098, 578.7136, 528.1283, 503.39127, 587.0142, 609.7558, 584.5035, 690.0997, 584.5035, 770.4435)
 uv = PackedVector2Array(628.5581, 514.8037, 713.0105, 569.5836, 719.8579, 697.4033, 687.90295, 747.6182, 678.7731, 825.223, 592.0382, 870.8729, 498.45593, 804.6806, 493.89087, 706.5333, 493.89087, 649.47095, 475.63098, 578.7136, 528.1283, 503.39127, 587.0142, 609.7558, 584.5035, 690.0997, 584.5035, 770.4435)
@@ -1976,7 +1971,7 @@ internal_vertex_count = 3
 
 [node name="Arm_R" type="Polygon2D" parent="Bro" unique_id=1117980483]
 position = Vector2(-130, -290)
-texture = ExtResource("2_bvel2")
+texture = ExtResource("3_ln6f0")
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(226.22275, 447.52048, 168.44437, 479.80838, 97.071075, 479.80838, 37.593353, 282.68216, 27.397156, 196.01457, 66.482544, 58.873688, 144.65329, 36.78195, 212.62784, 89.462234, 217.72592, 210.1171, 170.14377, 272.99356, 230.4721, 393.23395, 108.96753, 216.79837, 120.18335, 299.0476, 95.89656, 284.887, 88.76167, 254.76189, 155.3905, 250.44945)
 uv = PackedVector2Array(226.22275, 447.52048, 168.44437, 479.80838, 97.071075, 479.80838, 37.593353, 282.68216, 27.397156, 196.01457, 66.482544, 58.873688, 144.65329, 36.78195, 212.62784, 89.462234, 217.72592, 210.1171, 170.14377, 272.99356, 230.4721, 393.23395, 108.96753, 216.79837, 120.18335, 299.0476, 95.89656, 284.887, 88.76167, 254.76189, 155.3905, 250.44945)
@@ -1991,19 +1986,20 @@ rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="torso" type="Bone2D" parent="Bro/Skeleton2D/hip" unique_id=483674126]
 position = Vector2(0, -167)
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.99999976, 0.99999976)
 rest = Transform2D(1, 0, 0, 1, 0, -167)
 
 [node name="head" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=1677051192]
 position = Vector2(0, 4)
 rotation = -0.03295225
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.99999964, 0.99999964)
 rest = Transform2D(0.9994571, -0.032946285, 0.032946285, 0.9994571, 0, 4)
 auto_calculate_length_and_angle = false
 length = 180.0
 bone_angle = 289.99994
 
 [node name="arm_right" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=48507668]
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="forearm" type="Bone2D" parent="Bro/Skeleton2D/hip/torso/arm_right" unique_id=145025307]
@@ -2019,6 +2015,7 @@ length = 40.0
 bone_angle = 79.99997
 
 [node name="arm_left" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=216799781]
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="forearm" type="Bone2D" parent="Bro/Skeleton2D/hip/torso/arm_left" unique_id=911581322]
@@ -2075,7 +2072,7 @@ shape = SubResource("CapsuleShape2D_p1ap0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2125465256]
 libraries/ = SubResource("AnimationLibrary_7w27g")
-speed_scale = 2.5
+speed_scale = 3.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1713421942]
 tree_root = SubResource("AnimationNodeStateMachine_atvyi")

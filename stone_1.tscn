@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bpiovu8a06ofx"]
+
+[ext_resource type="Texture2D" uid="uid://cipptvncciqdi" path="res://stone_sprite.png" id="1_t6jb7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fffuj"]
+rough = true
+bounce = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a357e"]
+size = Vector2(174, 174)
+
+[node name="stone1" type="RigidBody2D" unique_id=169923455]
+collision_layer = 3
+mass = 30.0
+physics_material_override = SubResource("PhysicsMaterial_fffuj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1456431814]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_t6jb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609962365]
+shape = SubResource("RectangleShape2D_a357e")
