@@ -1,5 +1,8 @@
 extends Node
 
-var player_health = 100
-var lifting_volume = 0
-var current_checkpoint = "1"
+var energy1 = 100
+var volume1 = 0
+var energy2 = 100
+var volume2 = 0
+var checkpoint = 0
+var boss_unlocked = false

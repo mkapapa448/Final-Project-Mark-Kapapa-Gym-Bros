@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bm3barl28uff6" path="res://midpoint.gd" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://espfm4daetor" path="res://wood_sprite.png" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://cipptvncciqdi" path="res://stone_sprite.png" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://cronfqe4hvf08" path="res://canvas_layer.gd" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bpiovu8a06ofx" path="res://stone_1.tscn" id="7_272bh"]
 
 [sub_resource type="Gradient" id="Gradient_lquwl"]
@@ -73,10 +74,30 @@ physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_272bh")
 sources/3 = SubResource("TileSetAtlasSource_5vw27")
 
+[sub_resource type="LabelSettings" id="LabelSettings_5vw27"]
+line_spacing = 10.0
+font_size = 40
+font_color = Color(0.68038887, 0, 0.006011916, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.23529412)
+shadow_offset = Vector2(1, 2)
+
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 28
 outline_size = 2
 outline_color = Color(0.73333335, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.23529412)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kek77"]
+line_spacing = 10.0
+font_size = 40
+font_color = Color(0.14117648, 0.4509804, 0.5137255, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.23529412)
 shadow_offset = Vector2(1, 2)
@@ -120,6 +141,7 @@ tile_map_data = PackedByteArray("AAAEAAAAAgABAAEAAAAEAP//AgABAAEAAAAEAP7/AgABAAA
 tile_set = SubResource("TileSet_kek77")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1446866700]
+script = ExtResource("7_5vw27")
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=1599800257]
 layout_mode = 3
@@ -136,12 +158,17 @@ offset_bottom = 50.0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player1" unique_id=1900693224]
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player1" unique_id=1419231668]
+layout_mode = 2
+text = "Player 1"
+label_settings = SubResource("LabelSettings_5vw27")
+
+[node name="Energy" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player1" unique_id=1900693224]
 layout_mode = 2
 text = "Lifting Volume:"
 label_settings = SubResource("LabelSettings_h2yge")
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player1" unique_id=753054520]
+[node name="Volume" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player1" unique_id=753054520]
 layout_mode = 2
 text = "Energy:"
 label_settings = SubResource("LabelSettings_h2yge")
@@ -149,15 +176,23 @@ label_settings = SubResource("LabelSettings_h2yge")
 [node name="Player2" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer" unique_id=1343970665]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player2" unique_id=1690218358]
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player2" unique_id=929685002]
+layout_mode = 2
+text = "Player 2"
+label_settings = SubResource("LabelSettings_kek77")
+
+[node name="Energy" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player2" unique_id=1690218358]
 layout_mode = 2
 text = "Lifting Volume:"
 label_settings = SubResource("LabelSettings_1bvp3")
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player2" unique_id=641627836]
+[node name="Volume" type="Label" parent="CanvasLayer/Control/HBoxContainer/Player2" unique_id=641627836]
 layout_mode = 2
 text = "Energy:"
 label_settings = SubResource("LabelSettings_1bvp3")
 
 [node name="stone1" parent="." unique_id=169923455 instance=ExtResource("7_272bh")]
 position = Vector2(-175, -1061)
+
+[node name="stone2" parent="." unique_id=1640940714 instance=ExtResource("7_272bh")]
+position = Vector2(-1394, -892)

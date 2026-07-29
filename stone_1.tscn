@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cipptvncciqdi" path="res://stone_sprite.png" id="1_t6jb7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fffuj"]
-rough = true
+friction = 0.5
 bounce = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a357e"]
@@ -11,7 +11,7 @@ size = Vector2(174, 174)
 
 [node name="stone1" type="RigidBody2D" unique_id=169923455]
 collision_layer = 3
-mass = 30.0
+mass = 35.0
 physics_material_override = SubResource("PhysicsMaterial_fffuj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1456431814]

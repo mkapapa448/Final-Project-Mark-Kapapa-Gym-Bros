@@ -2003,7 +2003,7 @@ height = 366.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amc5v"]
 radius = 147.0
-height = 632.0
+height = 636.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2ikd"]
 radius = 221.0
@@ -2102,7 +2102,7 @@ rest = Transform2D(1, 0, 0, 1, 0, -167)
 [node name="head" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=1677051192]
 position = Vector2(0, 4)
 rotation = -0.03295225
-scale = Vector2(0.9999997, 0.9999997)
+scale = Vector2(0.9999996, 0.9999996)
 rest = Transform2D(0.9994571, -0.032946285, 0.032946285, 0.9994571, 0, 4)
 auto_calculate_length_and_angle = false
 length = 180.0

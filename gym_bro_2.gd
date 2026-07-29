@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 1400.0
-const JUMP_VELOCITY = -1300.0
+const SPEED = 1200.0
+const JUMP_VELOCITY = -1500.0
 
 @onready var skeleton = $Bro 
 
