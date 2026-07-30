@@ -1,9 +1,31 @@
 extends CharacterBody2D
 
-const SPEED = 1200.0
-const JUMP_VELOCITY = -1500.0
+const SPEED = 1100.0
+const JUMP_VELOCITY = -1600.0
 
 @onready var skeleton = $Bro 
+
+@onready var push_zone_left = $push_zone_left
+@onready var push_zone_right = $push_zone_right
+@onready var push_zone_top = $push_zone_top
+@onready var lift_zone_left = $lift_zone_left
+@onready var lift_zone_right = $lift_zone_right
+
+var push_strength = 20000 + 10000 * (Game.energy2/100)
+var lift_strength = 40000 + 20000 * (Game.energy2/100)
+
+
+enum State {
+	IDLE,
+	RUN,
+	PUSH,
+	LIFT,
+	THROW
+}
+
+var state = State.IDLE
+
+@onready var playback = $AnimationTree["parameters/playback"]
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -17,18 +39,98 @@ func _physics_process(delta: float) -> void:
 		velocity.y /= 2.5
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left2", "right2")
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * SPEED, 100)
-		skeleton.scale.x = sign(direction)
-		$AnimationPlayer.speed_scale = 1.5
+	
+	if Input.is_action_pressed("pushright2") == false and Input.is_action_pressed("pushleft2") == false:
+		var direction := Input.get_axis("left2", "right2")
+		if direction:
+			velocity.x = move_toward(velocity.x, direction * SPEED, 100)
+			skeleton.scale.x = sign(direction)
+			$AnimationPlayer.speed_scale = 1.5
+		else:
+			velocity.x = move_toward(velocity.x, 0, 50)
+			$AnimationPlayer.speed_scale = 1.0
+			
+		if direction != 0:
+			state = State.RUN
+		else:
+			state = State.IDLE
 	else:
 		velocity.x = move_toward(velocity.x, 0, 50)
-		$AnimationPlayer.speed_scale = 1.0
-
-	if direction != 0:
-		$AnimationTree["parameters/playback"].travel("run")
-	else:
-		$AnimationTree["parameters/playback"].travel("idle")
-
 	move_and_slide()
+	
+	
+	match state:
+		State.IDLE:
+			playback.travel("idle")
+		State.RUN:
+			playback.travel("run")
+		State.PUSH:
+			playback.travel("push")
+		State.LIFT:
+			playback.travel("lift")
+	
+	if Input.is_action_just_pressed("pushright2"):
+		var overlapping_bodies = push_zone_right.get_overlapping_bodies()
+		for body in overlapping_bodies:
+			if body is RigidBody2D:
+				#var push_dir = (body.global_position - global_position).normalized() 
+				# Apply an instantaneous central impulse
+				body.apply_central_impulse(Vector2(push_strength,0))
+				state = State.PUSH
+				Game.energy2 -= body.mass/50
+				Game.volume2 += body.mass
+	if Input.is_action_just_pressed("pushleft2"):
+		var overlapping_bodies = push_zone_left.get_overlapping_bodies()
+		for body in overlapping_bodies:
+			if body is RigidBody2D:
+				#var push_dir = (body.global_position - global_position).normalized() 
+				# Apply an instantaneous central impulse
+				body.apply_central_impulse(Vector2(-push_strength,0))
+				state = State.PUSH
+				Game.energy2 -= body.mass/50
+				Game.volume2 += body.mass
+
+	if Input.is_action_just_pressed("lift2"):
+		var overlapping_bodies = lift_zone_left.get_overlapping_bodies()
+		for body in overlapping_bodies:
+			if body is RigidBody2D:
+				#var push_dir = (body.global_position - global_position).normalized() 
+				# Apply an instantaneous central impulse
+				body.apply_central_impulse(Vector2(0, -lift_strength))
+				state = State.LIFT
+				Game.energy2 -= body.mass/50
+				Game.volume2 += body.mass
+		overlapping_bodies = lift_zone_right.get_overlapping_bodies()
+		for body in overlapping_bodies:
+			if body is RigidBody2D:
+				#var push_dir = (body.global_position - global_position).normalized() 
+				# Apply an instantaneous central impulse
+				body.apply_central_impulse(Vector2(0, -lift_strength))
+				state = State.LIFT
+				Game.energy2 -= body.mass/50
+				Game.volume2 += body.mass
+	
+	var overlapping_bodies = push_zone_top.get_overlapping_bodies()
+	for body in overlapping_bodies:
+		if body is RigidBody2D:
+			#var push_dir = (body.global_position - global_position).normalized() 
+			# Apply an instantaneous central impulse
+			body.apply_central_impulse(Vector2(0, -body.mass*250))
+			Game.energy2 -= body.mass/100
+	
+	push_strength = 20000 + 10000 * (Game.energy2/100)
+	lift_strength = 40000 + 20000 * (Game.energy2/100)
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "push":
+		var direction = Input.get_axis("left2", "right2")
+		if direction != 0:
+			state = State.RUN
+		else:
+			state = State.IDLE
+
+
+func _on_push_zone_top_body_entered(body: Node2D) -> void:
+	if body.linear_velocity.y >= 0:
+		body.apply_central_impulse(Vector2(0, -body.mass*1500))
+		Game.energy2 -= body.mass/100

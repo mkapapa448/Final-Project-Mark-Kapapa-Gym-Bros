@@ -1122,6 +1122,9 @@ tracks/31/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_amc5v"]
+resource_name = "lift"
+
 [sub_resource type="Animation" id="Animation_e3c48"]
 resource_name = "pose"
 length = 3.0
@@ -1484,6 +1487,82 @@ tracks/29/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.15405643, 0.15405643, 0.56713915, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d5ku4"]
+resource_name = "push"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bro/Skeleton2D/hip/torso/head:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.018301845, -0.03295225]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bro/Skeleton2D/hip/torso/arm_right:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.1822065, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bro/Skeleton2D/hip/torso/arm_right/forearm:rotation")
+tracks/2/interp = 4
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.31663126, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bro/Skeleton2D/hip/torso/arm_left:rotation")
+tracks/3/interp = 4
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.1614077, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bro/Skeleton2D/hip/torso/arm_left/forearm:rotation")
+tracks/4/interp = 4
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bro/Skeleton2D/hip/torso:rotation")
+tracks/5/interp = 4
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.046304073, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_7w27g"]
@@ -1856,11 +1935,13 @@ tracks/14/keys = {
 "values": [-0.005669631, -0.005669631, 0.5615019, 0.1345953, 0.20943952, 0.32237178]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7w27g"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6hkai"]
 _data = {
 &"RESET": SubResource("Animation_bvel2"),
 &"idle": SubResource("Animation_67xg7"),
+&"lift": SubResource("Animation_amc5v"),
 &"pose": SubResource("Animation_e3c48"),
+&"push": SubResource("Animation_d5ku4"),
 &"run": SubResource("Animation_7w27g"),
 &"run_left": SubResource("Animation_t7waq")
 }
@@ -1870,6 +1951,9 @@ animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7w27g"]
 animation = &"pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_amc5v"]
+animation = &"push"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_67xg7"]
 animation = &"run"
@@ -1890,14 +1974,40 @@ advance_expression = "is_moving"
 xfade_time = 0.3
 advance_expression = "is_idle"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_atvyi"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a2ikd"]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g0grd"]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wadec"]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0dkrd"]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3wmie"]
 states/idle/node = SubResource("AnimationNodeAnimation_bvel2")
 states/idle/position = Vector2(321.04, 99.36)
 states/pose/node = SubResource("AnimationNodeAnimation_7w27g")
 states/pose/position = Vector2(480.4, 27.2)
+states/push/node = SubResource("AnimationNodeAnimation_amc5v")
+states/push/position = Vector2(206, 22.4)
 states/run/node = SubResource("AnimationNodeAnimation_67xg7")
 states/run/position = Vector2(688.4, 99.68001)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7w27g"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_t7waq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_21ysm")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7w27g"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_t7waq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_21ysm"), "idle", "push", SubResource("AnimationNodeStateMachineTransition_a2ikd"), "push", "idle", SubResource("AnimationNodeStateMachineTransition_g0grd"), "run", "push", SubResource("AnimationNodeStateMachineTransition_wadec"), "push", "run", SubResource("AnimationNodeStateMachineTransition_0dkrd")]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hkai"]
+radius = 147.0
+height = 338.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wmie"]
+radius = 147.0
+height = 636.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln6f0"]
+radius = 53.0
+height = 226.0
 
 [node name="Gym Bro" type="CharacterBody2D" unique_id=1571358091]
 collision_layer = 2
@@ -1986,13 +2096,13 @@ rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="torso" type="Bone2D" parent="Bro/Skeleton2D/hip" unique_id=483674126]
 position = Vector2(0, -167)
-scale = Vector2(0.99999976, 0.99999976)
+scale = Vector2(0.9999997, 0.9999997)
 rest = Transform2D(1, 0, 0, 1, 0, -167)
 
 [node name="head" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=1677051192]
 position = Vector2(0, 4)
 rotation = -0.03295225
-scale = Vector2(0.99999964, 0.99999964)
+scale = Vector2(0.9999995, 0.9999995)
 rest = Transform2D(0.9994571, -0.032946285, 0.032946285, 0.9994571, 0, 4)
 auto_calculate_length_and_angle = false
 length = 180.0
@@ -2070,10 +2180,40 @@ visible = false
 position = Vector2(14, -69)
 shape = SubResource("CapsuleShape2D_p1ap0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2125465256]
-libraries/ = SubResource("AnimationLibrary_7w27g")
-speed_scale = 3.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1137679883]
+libraries/ = SubResource("AnimationLibrary_6hkai")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1713421942]
-tree_root = SubResource("AnimationNodeStateMachine_atvyi")
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1903952930]
+tree_root = SubResource("AnimationNodeStateMachine_3wmie")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="push_zone_right" type="Area2D" parent="." unique_id=1351336966]
+position = Vector2(196, -57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_right" unique_id=1719970350]
+shape = SubResource("CapsuleShape2D_6hkai")
+
+[node name="push_zone_left" type="Area2D" parent="." unique_id=1284160266]
+position = Vector2(-196, -57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_left" unique_id=547394449]
+shape = SubResource("CapsuleShape2D_6hkai")
+
+[node name="lift_zone_right" type="Area2D" parent="." unique_id=1238604109]
+position = Vector2(196, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lift_zone_right" unique_id=794133656]
+shape = SubResource("CapsuleShape2D_3wmie")
+
+[node name="lift_zone_left" type="Area2D" parent="." unique_id=1209794123]
+position = Vector2(-196, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lift_zone_left" unique_id=1467676976]
+shape = SubResource("CapsuleShape2D_3wmie")
+
+[node name="push_zone_top" type="Area2D" parent="." unique_id=1851895383]
+position = Vector2(3, -443)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_top" unique_id=505992679]
+shape = SubResource("CapsuleShape2D_ln6f0")

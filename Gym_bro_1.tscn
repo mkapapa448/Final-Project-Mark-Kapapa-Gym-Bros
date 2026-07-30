@@ -1999,15 +1999,15 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5ku4"]
 radius = 147.0
-height = 366.0
+height = 338.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amc5v"]
 radius = 147.0
 height = 636.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2ikd"]
-radius = 66.0
-height = 264.0
+radius = 53.0
+height = 226.0
 
 [node name="Gym Bro" type="CharacterBody2D" unique_id=1571358091]
 collision_layer = 2
@@ -2096,7 +2096,7 @@ rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="torso" type="Bone2D" parent="Bro/Skeleton2D/hip" unique_id=483674126]
 position = Vector2(0, -167)
-scale = Vector2(0.99999934, 0.99999934)
+scale = Vector2(0.9999993, 0.9999993)
 rest = Transform2D(1, 0, 0, 1, 0, -167)
 
 [node name="head" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=1677051192]
@@ -2109,7 +2109,7 @@ length = 180.0
 bone_angle = 289.99994
 
 [node name="arm_right" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=48507668]
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.99999976, 0.99999976)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="forearm" type="Bone2D" parent="Bro/Skeleton2D/hip/torso/arm_right" unique_id=145025307]
@@ -2206,7 +2206,7 @@ position = Vector2(-196, 5)
 shape = SubResource("CapsuleShape2D_amc5v")
 
 [node name="push_zone_top" type="Area2D" parent="." unique_id=1956723895]
-position = Vector2(0, -428)
+position = Vector2(3, -443)
 rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_top" unique_id=2037197604]
