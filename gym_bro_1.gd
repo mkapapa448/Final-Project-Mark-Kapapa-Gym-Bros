@@ -78,6 +78,7 @@ func _physics_process(delta: float) -> void:
 				body.apply_central_impulse(Vector2(push_strength,0))
 				state = State.PUSH
 				Game.energy1 -= body.mass/30
+				Game.volume1 += body.mass
 	if Input.is_action_just_pressed("pushleft1"):
 		var overlapping_bodies = push_zone_left.get_overlapping_bodies()
 		for body in overlapping_bodies:
@@ -87,6 +88,8 @@ func _physics_process(delta: float) -> void:
 				body.apply_central_impulse(Vector2(-push_strength,0))
 				state = State.PUSH
 				Game.energy1 -= body.mass/30
+				Game.volume1 += body.mass
+
 	if Input.is_action_just_pressed("lift1"):
 		var overlapping_bodies = lift_zone_left.get_overlapping_bodies()
 		for body in overlapping_bodies:
@@ -96,6 +99,7 @@ func _physics_process(delta: float) -> void:
 				body.apply_central_impulse(Vector2(0, -lift_strength))
 				state = State.LIFT
 				Game.energy1 -= body.mass/30
+				Game.volume1 += body.mass
 		overlapping_bodies = lift_zone_right.get_overlapping_bodies()
 		for body in overlapping_bodies:
 			if body is RigidBody2D:
@@ -104,7 +108,16 @@ func _physics_process(delta: float) -> void:
 				body.apply_central_impulse(Vector2(0, -lift_strength))
 				state = State.LIFT
 				Game.energy1 -= body.mass/30
-				
+				Game.volume1 += body.mass
+	
+	var overlapping_bodies = push_zone_top.get_overlapping_bodies()
+	for body in overlapping_bodies:
+		if body is RigidBody2D:
+			#var push_dir = (body.global_position - global_position).normalized() 
+			# Apply an instantaneous central impulse
+			body.apply_central_impulse(Vector2(0, -body.mass*250))
+			Game.energy1 -= body.mass/100
+	
 	push_strength = 20000 + 10000 * (Game.energy1/100)
 	lift_strength = 40000 + 20000 * (Game.energy1/100)
 	throw_strength = 20000
@@ -116,3 +129,9 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 			state = State.RUN
 		else:
 			state = State.IDLE
+
+
+func _on_push_zone_top_body_entered(body: Node2D) -> void:
+	if body.linear_velocity.y >= 0:
+		body.apply_central_impulse(Vector2(0, -body.mass*1500))
+		Game.energy1 -= body.mass/100
