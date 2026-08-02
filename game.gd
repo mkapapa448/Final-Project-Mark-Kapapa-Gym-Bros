@@ -6,3 +6,5 @@ var energy2 = 100
 var volume2 = 0
 var checkpoint = 0
 var boss_unlocked = false
+var defeated_boss = false
+var win = false

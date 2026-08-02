@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://diam88pe4kv4f"]
+
+[ext_resource type="Script" uid="uid://ds4m78vv4q7us" path="res://npc.gd" id="1_xxcha"]
+[ext_resource type="Texture2D" uid="uid://dbe0ru280bxd8" path="res://bro.png" id="2_ul7y6"]
+[ext_resource type="Texture2D" uid="uid://b1v4nscacd8ej" path="res://speech_bubble.png" id="3_bc6q4"]
+[ext_resource type="FontFile" uid="uid://cqpyqfc055k6q" path="res://PressStart2P-Regular.ttf" id="4_bc6q4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d61ma"]
+font = ExtResource("4_bc6q4")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul7y6"]
+size = Vector2(206, 515)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcvl2"]
+size = Vector2(700, 582)
+
+[sub_resource type="Gradient" id="Gradient_ul7y6"]
+offsets = PackedFloat32Array(0.0072115385, 1)
+colors = PackedColorArray(1, 1, 1, 0.2509804, 1, 1, 1, 0.8117647)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bc6q4"]
+gradient = SubResource("Gradient_ul7y6")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ul7y6"]
+font = ExtResource("4_bc6q4")
+font_size = 15
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="NPC" type="StaticBody2D" unique_id=202732148]
+script = ExtResource("1_xxcha")
+
+[node name="Zelda" type="Sprite2D" parent="." unique_id=1137538639]
+texture = ExtResource("2_ul7y6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=362327248]
+position = Vector2(210.99998, -406)
+rotation = 3.1415925
+scale = Vector2(0.8, -0.8)
+texture = ExtResource("3_bc6q4")
+flip_h = true
+
+[node name="Label" type="Label" parent="Sprite2D2" unique_id=1909107146]
+texture_filter = 2
+offset_left = 193.74995
+offset_top = -197.49998
+offset_right = 573.74994
+offset_bottom = 52.500015
+scale = Vector2(-1, 1)
+label_settings = SubResource("LabelSettings_d61ma")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2022293306]
+position = Vector2(-10, 11.5)
+shape = SubResource("RectangleShape2D_ul7y6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2049681925]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1037818774]
+position = Vector2(-11, -19)
+shape = SubResource("RectangleShape2D_mcvl2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=548752496]
+visible = false
+position = Vector2(-1, -277.99997)
+scale = Vector2(5, 0.576)
+texture = SubResource("GradientTexture2D_bc6q4")
+
+[node name="Label" type="Label" parent="." unique_id=2010780854]
+visible = false
+offset_left = -151.0
+offset_top = -285.0
+offset_right = 149.0
+offset_bottom = -256.0
+text = "(Press Space or E)"
+label_settings = SubResource("LabelSettings_ul7y6")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

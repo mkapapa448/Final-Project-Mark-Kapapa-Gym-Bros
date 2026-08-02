@@ -1,21 +1,22 @@
-[gd_scene format=3 uid="uid://bpiovu8a06ofx"]
+[gd_scene format=3 uid="uid://csv71k3n2i825"]
 
-[ext_resource type="Texture2D" uid="uid://cipptvncciqdi" path="res://stone_sprite.png" id="1_t6jb7"]
+[ext_resource type="Texture2D" uid="uid://espfm4daetor" path="res://wood_sprite.png" id="1_h1vpj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fffuj"]
 friction = 0.3
+absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a357e"]
 size = Vector2(172, 172)
 
 [node name="stone1" type="RigidBody2D" unique_id=169923455]
 collision_layer = 3
-mass = 35.0
+mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_fffuj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1456431814]
 scale = Vector2(0.33, 0.33)
-texture = ExtResource("1_t6jb7")
+texture = ExtResource("1_h1vpj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609962365]
 shape = SubResource("RectangleShape2D_a357e")

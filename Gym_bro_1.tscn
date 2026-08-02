@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://jtvknyd0ryf2" path="res://gym_bro_1.gd" id="1_bvel2"]
 [ext_resource type="Texture2D" uid="uid://y6umyljcbte0" path="res://Gym_Bros_1.png" id="2_bvel2"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1ap0"]
-radius = 150.0
-height = 840.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5ku4"]
+size = Vector2(300, 840)
 
 [sub_resource type="Animation" id="Animation_bvel2"]
 length = 0.001
@@ -2002,12 +2001,16 @@ radius = 147.0
 height = 338.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amc5v"]
-radius = 147.0
-height = 636.0
+radius = 165.0
+height = 522.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2ikd"]
 radius = 53.0
 height = 226.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0grd"]
+radius = 163.0
+height = 732.0
 
 [node name="Gym Bro" type="CharacterBody2D" unique_id=1571358091]
 collision_layer = 2
@@ -2096,20 +2099,20 @@ rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="torso" type="Bone2D" parent="Bro/Skeleton2D/hip" unique_id=483674126]
 position = Vector2(0, -167)
-scale = Vector2(0.9999993, 0.9999993)
+scale = Vector2(0.9999982, 0.9999982)
 rest = Transform2D(1, 0, 0, 1, 0, -167)
 
 [node name="head" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=1677051192]
 position = Vector2(0, 4)
 rotation = -0.03295225
-scale = Vector2(0.9999994, 0.9999994)
+scale = Vector2(0.99999833, 0.99999833)
 rest = Transform2D(0.9994571, -0.032946285, 0.032946285, 0.9994571, 0, 4)
 auto_calculate_length_and_angle = false
 length = 180.0
 bone_angle = 289.99994
 
 [node name="arm_right" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=48507668]
-scale = Vector2(0.99999976, 0.99999976)
+scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="forearm" type="Bone2D" parent="Bro/Skeleton2D/hip/torso/arm_right" unique_id=145025307]
@@ -2124,7 +2127,7 @@ length = 40.0
 bone_angle = 79.99997
 
 [node name="arm_left" type="Bone2D" parent="Bro/Skeleton2D/hip/torso" unique_id=216799781]
-scale = Vector2(0.99999976, 0.99999976)
+scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="forearm" type="Bone2D" parent="Bro/Skeleton2D/hip/torso/arm_left" unique_id=911581322]
@@ -2172,7 +2175,7 @@ bone_angle = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1054778692]
 position = Vector2(14, -69)
-shape = SubResource("CapsuleShape2D_p1ap0")
+shape = SubResource("RectangleShape2D_d5ku4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2125465256]
 libraries/ = SubResource("AnimationLibrary_7w27g")
@@ -2182,35 +2185,44 @@ tree_root = SubResource("AnimationNodeStateMachine_atvyi")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="push_zone_right" type="Area2D" parent="." unique_id=1061202146]
-position = Vector2(196, -57)
+position = Vector2(135, -57)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_right" unique_id=422864664]
 shape = SubResource("CapsuleShape2D_d5ku4")
 
 [node name="push_zone_left" type="Area2D" parent="." unique_id=980254199]
-position = Vector2(-196, -57)
+position = Vector2(-111, -60)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_left" unique_id=48917895]
 shape = SubResource("CapsuleShape2D_d5ku4")
 
 [node name="lift_zone_right" type="Area2D" parent="." unique_id=1413330056]
-position = Vector2(196, 5)
+position = Vector2(211, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lift_zone_right" unique_id=14975894]
 shape = SubResource("CapsuleShape2D_amc5v")
 
 [node name="lift_zone_left" type="Area2D" parent="." unique_id=528536360]
-position = Vector2(-196, 5)
+position = Vector2(-193, 26)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lift_zone_left" unique_id=634937980]
 shape = SubResource("CapsuleShape2D_amc5v")
 
-[node name="push_zone_top" type="Area2D" parent="." unique_id=1956723895]
+[node name="head" type="Area2D" parent="." unique_id=1956723895]
 position = Vector2(3, -443)
 rotation = 1.5707964
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_top" unique_id=2037197604]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head" unique_id=2037197604]
 shape = SubResource("CapsuleShape2D_a2ikd")
 
+[node name="push_zone_top" type="Area2D" parent="." unique_id=317551982]
+position = Vector2(0, -688)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_zone_top" unique_id=928249205]
+position = Vector2(0, 48)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_g0grd")
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="head" to="." method="_on_head_body_entered"]
 [connection signal="body_entered" from="push_zone_top" to="." method="_on_push_zone_top_body_entered"]

@@ -9,4 +9,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position = (player2.position + player1.position) / 2
+	position = (player1.position) + Vector2(0, -200)

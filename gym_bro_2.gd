@@ -96,7 +96,7 @@ func _physics_process(delta: float) -> void:
 			if body is RigidBody2D:
 				#var push_dir = (body.global_position - global_position).normalized() 
 				# Apply an instantaneous central impulse
-				body.apply_central_impulse(Vector2(0, -lift_strength))
+				body.apply_central_impulse(Vector2(-push_strength/2, -lift_strength*2/3))
 				state = State.LIFT
 				Game.energy2 -= body.mass/50
 				Game.volume2 += body.mass
@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 			if body is RigidBody2D:
 				#var push_dir = (body.global_position - global_position).normalized() 
 				# Apply an instantaneous central impulse
-				body.apply_central_impulse(Vector2(0, -lift_strength))
+				body.apply_central_impulse(Vector2(push_strength/2, -lift_strength*2/3))
 				state = State.LIFT
 				Game.energy2 -= body.mass/50
 				Game.volume2 += body.mass
@@ -132,5 +132,5 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 
 func _on_push_zone_top_body_entered(body: Node2D) -> void:
 	if body.linear_velocity.y >= 0:
-		body.apply_central_impulse(Vector2(0, -body.mass*1500))
+		body.apply_central_impulse(Vector2(0, -body.mass*1000))
 		Game.energy2 -= body.mass/100
