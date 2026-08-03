@@ -8,7 +8,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Game.energy1 <= 0:
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://lose.tscn")
+	if Game.defeated_boss == true:
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://win.tscn")
+
 
 
 func _on_boss_fight_area_body_entered(body: Node2D) -> void:

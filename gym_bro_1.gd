@@ -32,8 +32,10 @@ var state = State.IDLE
 @onready var playback = $AnimationTree["parameters/playback"]
 
 func _physics_process(delta: float) -> void:
-
-
+	
+	if Game.energy1 <= 0:
+		queue_free()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

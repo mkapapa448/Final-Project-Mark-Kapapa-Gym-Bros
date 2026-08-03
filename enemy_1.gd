@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 	
 	if health <= 0:
 		die.emit()
+		Game.defeated_boss = true
 		queue_free()
 		
 	if not target:
