@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 @onready var nav_agent = $NavigationAgent2D
 @export var newbullet: PackedScene
@@ -17,6 +17,7 @@ var can_shoot = true
 @export var stopped = false
 
 signal die
+var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	#$shot_timer.wait_time = timer_length
@@ -30,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		if not target:
 			return
 		
-		
+		speed = abs(target.position - position)/10
 		nav_agent.target_position = target.global_position
 		
 		if nav_agent.is_navigation_finished():
@@ -43,17 +44,21 @@ func _physics_process(delta: float) -> void:
 		#$Sprite2D.rotation = (target.global_position - global_position).angle()
 		#$muzzle.rotation = (target.global_position - global_position).angle()
 		
-		#if can_shoot:
-			#var new_bullet = newbullet.instantiate()
-			#new_bullet.rotation = (target.global_position - global_position).angle()
-			#new_bullet.speed = bullet_speed
-			#new_bullet.damage = bullet_damage
-			#new_bullet.global_position = $muzzle/Marker2D.global_position
-			#new_bullet.from = 1
-			#get_tree().root.add_child(new_bullet)
-			#can_shoot = false
-			#shottimer.start()
-		move_and_slide()
+		if can_shoot:
+			var new_bullet = newbullet.instantiate()
+			
+			new_bullet.global_position = $Node2D/Marker2D.global_position
+			get_tree().root.add_child(new_bullet)
+			can_shoot = false
+			shottimer.start()
+		position += velocity
 
 func _on_shot_timer_timeout() -> void:
 	can_shoot = true
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is RigidBody2D:
+		queue_free()
+	elif body is CharacterBody2D and body.name == "player1":
+		Game.energy -= 5

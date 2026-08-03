@@ -3,18 +3,28 @@
 [ext_resource type="Texture2D" uid="uid://mvo542txguup" path="res://enemy1.png" id="1_mbxyh"]
 [ext_resource type="Script" uid="uid://c1hke3oumtbtd" path="res://enemy_1.gd" id="1_pjquw"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjquw"]
-radius = 163.0
-height = 568.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjquw"]
+radius = 101.49384
 
 [node name="enemy1" type="CharacterBody2D" unique_id=1271314475]
 script = ExtResource("1_pjquw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=243093699]
-scale = Vector2(0.3, 0.3)
+position = Vector2(-7.9999995, -49.999996)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_mbxyh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=458112397]
-position = Vector2(0, 161)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_pjquw")
+shape = SubResource("CircleShape2D_pjquw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1113331591]
+avoidance_enabled = true
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1170091018]
+
+[node name="Marker2D" type="Marker2D" parent="Node2D" unique_id=503024720]
+position = Vector2(0, 60)
+
+[node name="shot_timer" type="Timer" parent="." unique_id=615740972]
+wait_time = 5.0
+one_shot = true
