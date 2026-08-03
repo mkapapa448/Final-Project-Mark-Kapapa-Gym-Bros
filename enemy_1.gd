@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 		#$Sprite2D.rotation = (target.global_position - global_position).angle()
 		#$muzzle.rotation = (target.global_position - global_position).angle()
 		
-	if can_shoot:
+	if can_shoot and !get_parent().get_node("door1"):
 		var new_bullet = newbullet.instantiate()
 		#new_bullet.rotation = (target.global_position - global_position).angle()
 		#new_bullet.speed = bullet_speed
