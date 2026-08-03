@@ -3,7 +3,7 @@ extends StaticBody2D
 @onready var dialogue_box = $Sprite2D2
 @onready var dialogue_text = $Sprite2D2/Label
 
-var dialogue = [["So bro, I have something to tell you...", "Can you go take care of him bro?\nIt's my rest day.", "They say\nnobody has ever reached\nthe top of the tower\nand defeated the king.", "Good luck and thanks!"],["What are you waiting around here for?","Enter the castle!"],["You did it!!"]]
+var dialogue = [["So bro, I have something to tell you...", "Can you go take care of the ghost knight bro?\nIt's my rest day.", "They say\nnobody has ever reached\nthe top of the tower\nand defeated him.", "Good luck and thanks!"],["What are you waiting around here for?","Enter the castle!"],["You did it!!"]]
 var dialogue_active = false
 var dialogue_message = 0
 var dialogue_stage = 0

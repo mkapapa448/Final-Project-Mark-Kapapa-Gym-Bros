@@ -7,6 +7,8 @@
 radius = 101.49384
 
 [node name="enemy2" type="Area2D" unique_id=839261506]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_vfv5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=243093699]
@@ -19,5 +21,9 @@ shape = SubResource("CircleShape2D_pjquw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1113331591]
 avoidance_enabled = true
+
+[node name="shot_timer" type="Timer" parent="." unique_id=1449207524]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

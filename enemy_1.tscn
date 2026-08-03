@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_pjquw"]
 radius = 101.49384
 
-[node name="enemy1" type="CharacterBody2D" unique_id=1271314475]
+[node name="enemy1" type="Area2D" unique_id=1940851589]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_pjquw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=243093699]
@@ -23,8 +25,12 @@ avoidance_enabled = true
 [node name="Node2D" type="Node2D" parent="." unique_id=1170091018]
 
 [node name="Marker2D" type="Marker2D" parent="Node2D" unique_id=503024720]
-position = Vector2(0, 60)
+position = Vector2(-1, 218)
 
 [node name="shot_timer" type="Timer" parent="." unique_id=615740972]
 wait_time = 5.0
 one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]
