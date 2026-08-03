@@ -13,8 +13,11 @@ const JUMP_VELOCITY = -1600.0
 
 var facing = "right"
 
+
 var push_left_last_body: RigidBody2D = null
 var push_right_last_body: RigidBody2D = null
+
+var last_state = null
 
 var push_strength = (15000 + 75000 * (Game.energy1/100))
 var lift_strength = (40000 + 130000 * (Game.energy1/100))
@@ -39,8 +42,16 @@ func _physics_process(delta: float) -> void:
 	if Game.energy1 <= 0:
 		queue_free()
 	
-	is_pushing = false
-	is_lifting = false
+	if (Input.is_action_pressed("pushright1") or Input.is_action_pressed("pushleft1")) and !Input.is_action_pressed("lift"):
+		is_pushing = true
+	else:
+		is_pushing = false
+
+	if Input.is_action_pressed("lift1"):
+		is_lifting = true
+	else:
+		is_lifting = false
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -73,7 +84,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, 50)
 	
 	if Input.is_action_pressed("pushright1") and facing == "right":
-		is_pushing = true
 		var overlapping_bodies = push_zone_right.get_overlapping_bodies()
 		for body in overlapping_bodies:
 			if body is RigidBody2D:
@@ -94,7 +104,6 @@ func _physics_process(delta: float) -> void:
 		push_right_last_body = null
 
 	if Input.is_action_just_pressed("pushright1") and facing == "right":
-		is_pushing = true
 		#If body over player
 		var overlapping_bodies = push_zone_top.get_overlapping_bodies()
 		for body in overlapping_bodies:
@@ -109,7 +118,6 @@ func _physics_process(delta: float) -> void:
 				break
 	
 	if Input.is_action_pressed("pushleft1") and facing == "left":
-		is_pushing = true
 		var overlapping_bodies = push_zone_left.get_overlapping_bodies()
 		for body in overlapping_bodies:
 			if body is RigidBody2D:
@@ -130,7 +138,6 @@ func _physics_process(delta: float) -> void:
 		push_left_last_body = null
 		
 	if Input.is_action_just_pressed("pushleft1") and facing == "left":
-		is_pushing = true
 		#If body over player
 		var overlapping_bodies = push_zone_top.get_overlapping_bodies()
 		for body in overlapping_bodies:
@@ -144,7 +151,6 @@ func _physics_process(delta: float) -> void:
 				break
 
 	if Input.is_action_just_pressed("lift1"):
-		is_lifting = true
 		if facing == "left":
 			var overlapping_bodies = lift_zone_left.get_overlapping_bodies()
 			for body in overlapping_bodies:
@@ -237,17 +243,17 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
-	
-	match state:
-		State.IDLE:
-			playback.travel("idle")
-		State.RUN:
-			playback.travel("run")
-		State.PUSH:
-			playback.travel("push")
-		State.LIFT:
-			playback.travel("lift")
-	
+	if last_state != state:
+		match state:
+			State.IDLE:
+				playback.travel("idle")
+			State.RUN:
+				playback.travel("run")
+			State.PUSH:
+				playback.travel("push")
+			State.LIFT:
+				playback.travel("lift")
+		last_state = state
 	#ddddddddvar overlapping_bodies = push_zone_top.get_overlapping_bodies()
 	#for body in overlapping_bodies:
 		#if body is RigidBody2D:
@@ -267,9 +273,7 @@ func _physics_process(delta: float) -> void:
 			#state = State.IDLE
 
 func update_state():
-	if is_lifting and is_pushing:
-		state = State.LIFT
-	elif is_lifting:
+	if is_lifting:
 		state = State.LIFT
 	elif is_pushing:
 		state = State.PUSH
