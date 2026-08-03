@@ -50,8 +50,7 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=537916476]
 layout_mode = 2
-text = "After his battlefield victory, Bob's tank ran out of gas, so he walked home. 
-When he arrived, he was greeted warmly and ate bagels!"
+text = "The Gym Bros were knighted and won their new gym!"
 label_settings = SubResource("LabelSettings_tfejn")
 horizontal_alignment = 1
 

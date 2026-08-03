@@ -50,7 +50,7 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=537916476]
 layout_mode = 2
-text = "Bob didn't make it."
+text = "The Gym Bros didn't make it."
 label_settings = SubResource("LabelSettings_tfejn")
 horizontal_alignment = 1
 
