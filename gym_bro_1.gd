@@ -19,8 +19,8 @@ var push_right_last_body: RigidBody2D = null
 
 var last_state = null
 
-var push_strength = (15000 + 75000 * (Game.energy1/100))
-var lift_strength = (40000 + 130000 * (Game.energy1/100))
+var push_strength = 15000 + 75000
+var lift_strength = 40000 + 130000
 
 var is_pushing = false
 var is_lifting = false
