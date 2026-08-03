@@ -109,7 +109,6 @@ func _physics_process(delta: float) -> void:
 		var overlapping_bodies = push_zone_top.get_overlapping_bodies()
 		for body in overlapping_bodies:
 			if body is RigidBody2D:
-				playback.travel("throw")
 				if body.linear_velocity.y > 0:
 					body.apply_central_impulse(Vector2(0,-lift_strength/3))
 				#var push_dir = (body.global_position - global_position).normalized() 

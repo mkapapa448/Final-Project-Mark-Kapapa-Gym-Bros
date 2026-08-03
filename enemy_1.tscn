@@ -28,7 +28,7 @@ avoidance_enabled = true
 position = Vector2(-1, 218)
 
 [node name="shot_timer" type="Timer" parent="." unique_id=615740972]
-wait_time = 5.0
+wait_time = 12.0
 one_shot = true
 autostart = true
 

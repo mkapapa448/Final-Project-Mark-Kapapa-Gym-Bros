@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfyytp1nvercx"
+path="res://.godot/imported/freesound_community-073303_footsteps-on-stone-39947 (1).mp3-c12d6387b6f8fe208f95c54a54c41640.mp3str"
+
+[deps]
+
+source_file="res://freesound_community-073303_footsteps-on-stone-39947 (1).mp3"
+dest_files=["res://.godot/imported/freesound_community-073303_footsteps-on-stone-39947 (1).mp3-c12d6387b6f8fe208f95c54a54c41640.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

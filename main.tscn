@@ -146,7 +146,7 @@ sources/3 = SubResource("TileSetAtlasSource_ycdy4")
 sources/0 = SubResource("TileSetScenesCollectionSource_efxa6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(14814, 1498)
+size = Vector2(7469, 1498)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_efxa6"]
 normal = Vector2(1, 0)
@@ -249,7 +249,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossFightArea" unique_id=644071181]
-position = Vector2(-6407, 249)
+position = Vector2(-2734.5, 249)
 shape = SubResource("RectangleShape2D_5vw27")
 
 [node name="NPC" parent="." unique_id=1359978888 instance=ExtResource("12_ycdy4")]
@@ -320,4 +320,34 @@ position = Vector2(10173, -6510)
 newbullet = ExtResource("12_dg77c")
 target = NodePath("../player1")
 
+[connection signal="body_entered" from="TileMapLayer/stone1" to="TileMapLayer/stone1" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533447" to="TileMapLayer/@RigidBody2D@533447" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533448" to="TileMapLayer/@RigidBody2D@533448" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533449" to="TileMapLayer/@RigidBody2D@533449" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533450" to="TileMapLayer/@RigidBody2D@533450" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533451" to="TileMapLayer/@RigidBody2D@533451" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533452" to="TileMapLayer/@RigidBody2D@533452" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533461" to="TileMapLayer/@RigidBody2D@533461" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533464" to="TileMapLayer/@RigidBody2D@533464" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533465" to="TileMapLayer/@RigidBody2D@533465" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533466" to="TileMapLayer/@RigidBody2D@533466" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533467" to="TileMapLayer/@RigidBody2D@533467" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533468" to="TileMapLayer/@RigidBody2D@533468" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533469" to="TileMapLayer/@RigidBody2D@533469" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533470" to="TileMapLayer/@RigidBody2D@533470" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533471" to="TileMapLayer/@RigidBody2D@533471" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533472" to="TileMapLayer/@RigidBody2D@533472" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533473" to="TileMapLayer/@RigidBody2D@533473" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533474" to="TileMapLayer/@RigidBody2D@533474" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533475" to="TileMapLayer/@RigidBody2D@533475" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533476" to="TileMapLayer/@RigidBody2D@533476" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533477" to="TileMapLayer/@RigidBody2D@533477" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533500" to="TileMapLayer/@RigidBody2D@533500" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533501" to="TileMapLayer/@RigidBody2D@533501" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533502" to="TileMapLayer/@RigidBody2D@533502" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533503" to="TileMapLayer/@RigidBody2D@533503" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533504" to="TileMapLayer/@RigidBody2D@533504" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533505" to="TileMapLayer/@RigidBody2D@533505" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533506" to="TileMapLayer/@RigidBody2D@533506" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer/@RigidBody2D@533507" to="TileMapLayer/@RigidBody2D@533507" method="_on_body_entered"]
 [connection signal="body_entered" from="BossFightArea" to="." method="_on_boss_fight_area_body_entered"]

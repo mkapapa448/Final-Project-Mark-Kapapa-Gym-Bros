@@ -52,12 +52,17 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=786329633]
 layout_mode = 2
-text = "In the medieval kingdom, word has it that many brave knights have fallen attempting to 
-defeat a mysterious ghost  knight in the main castle. 
-After many years of oppresive reign, two gym bros who lived in the outskirts
-of the kingdom were offered a new gym in return for defeating the mysterious knight.
+text = "
+In the medieval kingdom, many brave knights have fallen attempting to 
+defeat a mysterious ghost knight that has overthown the castle. 
 
-Will they survive?"
+After many years of living in hiding, the townspeople found two eccentric gym bros of unusual strength
+who lived on the outskirts of the kingdom. They told the bros their tale and the bros accepted the
+challenge of going to the castle and fighting the ghost knight, on the condition the new king would
+pay for them to get a new gym.
+
+Will they defeat the knight and win a gym?
+"
 label_settings = SubResource("LabelSettings_tfejn")
 horizontal_alignment = 1
 
@@ -71,5 +76,8 @@ theme_override_constants/margin_bottom = 10
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1726241668]
 layout_mode = 2
 text = "Start"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1178335703]
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
