@@ -19,6 +19,9 @@ var push_right_last_body: RigidBody2D = null
 var push_strength = (15000 + 75000 * (Game.energy1/100))
 var lift_strength = (40000 + 130000 * (Game.energy1/100))
 
+var is_pushing = false
+var is_lifting = false
+
 enum State {
 	IDLE,
 	RUN,
@@ -36,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	if Game.energy1 <= 0:
 		queue_free()
 	
+	is_pushing = false
+	is_lifting = false
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -68,6 +73,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, 50)
 	
 	if Input.is_action_pressed("pushright1") and facing == "right":
+		is_pushing = true
 		var overlapping_bodies = push_zone_right.get_overlapping_bodies()
 		for body in overlapping_bodies:
 			if body is RigidBody2D:
@@ -82,12 +88,13 @@ func _physics_process(delta: float) -> void:
 				#Game.energy1 -= body.mass/50
 				
 				push_right_last_body = current_body
-				return
+				break
 	#Reset last body for lifting volume hud thing"
 	if Input.is_action_just_released("pushright1") and facing == "right":
 		push_right_last_body = null
 
 	if Input.is_action_just_pressed("pushright1") and facing == "right":
+		is_pushing = true
 		#If body over player
 		var overlapping_bodies = push_zone_top.get_overlapping_bodies()
 		for body in overlapping_bodies:
@@ -99,9 +106,10 @@ func _physics_process(delta: float) -> void:
 				body.apply_central_impulse(Vector2(push_strength/2.75,0))
 				#Game.energy1 -= body.mass/50
 				Game.volume1 += body.mass
-				return
+				break
 	
 	if Input.is_action_pressed("pushleft1") and facing == "left":
+		is_pushing = true
 		var overlapping_bodies = push_zone_left.get_overlapping_bodies()
 		for body in overlapping_bodies:
 			if body is RigidBody2D:
@@ -115,13 +123,14 @@ func _physics_process(delta: float) -> void:
 				body.apply_central_impulse(Vector2(-push_strength/20,0))
 				#Game.energy1 -= body.mass/50
 				push_left_last_body = current_body
-				return
+				break
 	
 	#Reset last body for lifting volume hud thing
 	if Input.is_action_just_released("pushleft1") and facing == "left":
 		push_left_last_body = null
 		
 	if Input.is_action_just_pressed("pushleft1") and facing == "left":
+		is_pushing = true
 		#If body over player
 		var overlapping_bodies = push_zone_top.get_overlapping_bodies()
 		for body in overlapping_bodies:
@@ -132,9 +141,10 @@ func _physics_process(delta: float) -> void:
 				body.apply_central_impulse(Vector2(-push_strength/2.75,0))
 				#Game.energy1 -= body.mass/50
 				Game.volume1 += body.mass
-				return
+				break
 
 	if Input.is_action_just_pressed("lift1"):
+		is_lifting = true
 		if facing == "left":
 			var overlapping_bodies = lift_zone_left.get_overlapping_bodies()
 			for body in overlapping_bodies:
@@ -144,7 +154,7 @@ func _physics_process(delta: float) -> void:
 					body.apply_central_impulse(Vector2(0, -lift_strength/2.5))
 					#Game.energy1 -= body.mass/50
 					Game.volume1 += body.mass
-				return
+				break
 		elif facing == "right":
 			var overlapping_bodies = lift_zone_right.get_overlapping_bodies()
 			for body in overlapping_bodies:
@@ -154,7 +164,7 @@ func _physics_process(delta: float) -> void:
 					body.apply_central_impulse(Vector2(0, -lift_strength/2.5))
 					#Game.energy1 -= body.mass/50
 					Game.volume1 += body.mass
-				return
+				break
 		
 	
 	
@@ -257,9 +267,11 @@ func _physics_process(delta: float) -> void:
 			#state = State.IDLE
 
 func update_state():
-	if Input.is_action_pressed("lift1"):
+	if is_lifting and is_pushing:
 		state = State.LIFT
-	elif Input.is_action_pressed("pushleft1") or Input.is_action_pressed("pushright1"):
+	elif is_lifting:
+		state = State.LIFT
+	elif is_pushing:
 		state = State.PUSH
 	elif abs(velocity.x) > 10:
 		state = State.RUN
