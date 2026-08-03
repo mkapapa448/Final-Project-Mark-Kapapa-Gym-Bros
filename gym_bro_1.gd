@@ -30,7 +30,8 @@ enum State {
 	RUN,
 	PUSH,
 	LIFT,
-	THROW
+	FALL,
+	JUMP
 }
 
 var state = State.IDLE
@@ -42,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	if Game.energy1 <= 0:
 		queue_free()
 	
-	if (Input.is_action_pressed("pushright1") or Input.is_action_pressed("pushleft1")) and !Input.is_action_pressed("lift"):
+	if (Input.is_action_pressed("pushright1") or Input.is_action_pressed("pushleft1")):
 		is_pushing = true
 	else:
 		is_pushing = false
@@ -253,6 +254,10 @@ func _physics_process(delta: float) -> void:
 				playback.travel("push")
 			State.LIFT:
 				playback.travel("lift")
+			State.JUMP:
+				playback.travel("jump")
+			State.FALL:
+				playback.travel("fall")
 		last_state = state
 	#ddddddddvar overlapping_bodies = push_zone_top.get_overlapping_bodies()
 	#for body in overlapping_bodies:
@@ -277,6 +282,10 @@ func update_state():
 		state = State.LIFT
 	elif is_pushing:
 		state = State.PUSH
+	elif !is_on_floor() and velocity.y > 0:
+		state = State.FALL
+	elif !is_on_floor() and velocity.y < 0:
+		state = State.JUMP
 	elif abs(velocity.x) > 10:
 		state = State.RUN
 	else:
